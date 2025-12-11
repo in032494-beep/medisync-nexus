@@ -8,7 +8,7 @@ export const ChatAgent: React.FC = () => {
     {
       id: '1',
       role: 'model',
-      text: 'Hello! I am your Hospital System Coordinator. How can I assist you today? I can help with appointments, medical records, patient registration, or billing inquiries.',
+      text: 'Selamat datang! Saya adalah Koordinator Pusat Sistem Rumah Sakit. Silakan ajukan pertanyaan Anda mengenai janji temu, penagihan, rekam medis, atau pendaftaran pasien.',
       agent: AgentType.COORDINATOR,
       timestamp: new Date()
     }
@@ -58,11 +58,11 @@ export const ChatAgent: React.FC = () => {
 
   const getAgentIcon = (agent?: AgentType) => {
     switch (agent) {
-      case AgentType.PATIENT_MGMT: return <User className="w-5 h-5 text-green-500" />;
-      case AgentType.APPOINTMENTS: return <Calendar className="w-5 h-5 text-purple-500" />;
-      case AgentType.MEDICAL_RECORDS: return <FileText className="w-5 h-5 text-orange-500" />;
-      case AgentType.BILLING: return <CreditCard className="w-5 h-5 text-yellow-500" />;
-      default: return <Bot className="w-5 h-5 text-blue-500" />;
+      case AgentType.PATIENT_MGMT: return <User className="w-5 h-5 text-green-600" />;
+      case AgentType.APPOINTMENTS: return <Calendar className="w-5 h-5 text-purple-600" />;
+      case AgentType.MEDICAL_RECORDS: return <FileText className="w-5 h-5 text-orange-600" />;
+      case AgentType.BILLING: return <CreditCard className="w-5 h-5 text-yellow-600" />;
+      default: return <Bot className="w-5 h-5 text-blue-600" />;
     }
   };
 
@@ -72,7 +72,7 @@ export const ChatAgent: React.FC = () => {
       case AgentType.APPOINTMENTS: return 'bg-purple-50 border-purple-200';
       case AgentType.MEDICAL_RECORDS: return 'bg-orange-50 border-orange-200';
       case AgentType.BILLING: return 'bg-yellow-50 border-yellow-200';
-      default: return 'bg-blue-50 border-blue-200';
+      default: return 'bg-slate-100 border-slate-200';
     }
   };
 
@@ -81,26 +81,26 @@ export const ChatAgent: React.FC = () => {
       {/* Header */}
       <div className="p-4 bg-white border-b border-slate-100 flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-bold text-slate-800">Hospital System Coordinator</h2>
-          <p className="text-sm text-slate-500">AI-Powered Routing System</p>
+          <h2 className="text-lg font-bold text-slate-800 text-blue-600">Hospital System Coordinator (HSC)</h2>
+          <p className="text-sm text-slate-500">Koordinator Pusat Sistem Agen AI</p>
         </div>
-        <div className="flex gap-2">
-            <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">Patient Mgmt</span>
-            <span className="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-700">Appointments</span>
-            <span className="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-700">Records</span>
-            <span className="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700">Billing</span>
+        <div className="hidden md:flex gap-2">
+            <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700 font-medium">Pasien</span>
+            <span className="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-700 font-medium">Janji Temu</span>
+            <span className="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-700 font-medium">Rekam Medis</span>
+            <span className="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700 font-medium">Keuangan</span>
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#f4f7f9]">
         {messages.map((msg) => (
           <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`flex max-w-[80%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} items-end gap-2`}>
+            <div className={`flex max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} items-end gap-2`}>
               
               {/* Avatar */}
               <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm ${
-                msg.role === 'user' ? 'bg-indigo-600' : 'bg-white'
+                msg.role === 'user' ? 'bg-blue-600' : 'bg-white'
               }`}>
                  {msg.role === 'user' ? <User className="w-5 h-5 text-white" /> : getAgentIcon(msg.agent)}
               </div>
@@ -108,16 +108,16 @@ export const ChatAgent: React.FC = () => {
               {/* Bubble */}
               <div className={`p-4 rounded-2xl text-sm shadow-sm ${
                 msg.role === 'user' 
-                  ? 'bg-indigo-600 text-white rounded-br-none' 
+                  ? 'bg-blue-100 text-slate-900 rounded-br-none' 
                   : `${getAgentStyle(msg.agent)} text-slate-800 rounded-bl-none border`
               }`}>
                 {msg.role === 'model' && (
-                  <p className="text-xs font-bold mb-1 opacity-70 uppercase tracking-wider">
+                  <p className="text-xs font-bold mb-1 opacity-70 uppercase tracking-wider text-slate-600">
                     {msg.agent}
                   </p>
                 )}
                 <p className="whitespace-pre-wrap leading-relaxed">{msg.text}</p>
-                <span className={`text-[10px] mt-2 block ${msg.role === 'user' ? 'text-indigo-200' : 'text-slate-400'}`}>
+                <span className={`text-[10px] mt-2 block ${msg.role === 'user' ? 'text-slate-500' : 'text-slate-400'}`}>
                     {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
@@ -128,7 +128,7 @@ export const ChatAgent: React.FC = () => {
            <div className="flex justify-start">
              <div className="flex items-end gap-2">
                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm">
-                 <Bot className="w-5 h-5 text-blue-500 animate-pulse" />
+                 <Bot className="w-5 h-5 text-blue-600 animate-pulse" />
                </div>
                <div className="bg-white border border-slate-200 p-3 rounded-2xl rounded-bl-none shadow-sm">
                  <div className="flex gap-1">
@@ -145,11 +145,11 @@ export const ChatAgent: React.FC = () => {
 
       {/* Input */}
       <div className="p-4 bg-white border-t border-slate-100">
-        <div className="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200 focus-within:ring-2 focus-within:ring-indigo-500 transition-all">
+        <div className="flex items-center gap-2">
           <input
             type="text"
-            className="flex-1 bg-transparent border-none outline-none px-2 text-sm text-slate-800 placeholder-slate-400"
-            placeholder="Ask about appointments, bills, or medical records..."
+            className="flex-1 bg-white border border-slate-300 rounded-lg px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+            placeholder="Ketik pertanyaan Anda di sini..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
@@ -157,9 +157,9 @@ export const ChatAgent: React.FC = () => {
           <button 
             onClick={handleSend}
             disabled={isLoading || !inputText.trim()}
-            className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
           >
-            <Send size={18} />
+            Kirim
           </button>
         </div>
       </div>

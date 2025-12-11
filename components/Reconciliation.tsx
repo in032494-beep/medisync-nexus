@@ -6,55 +6,55 @@ const mockClaims: ClaimData[] = [
   { 
     id: 'CLM-2023-001', 
     patientName: 'Budi Santoso', 
-    type: 'Outpatient',
+    type: 'Rawat Jalan',
     date: '2023-10-01', 
     amountSubmitted: 1500000, 
     amountApproved: 1500000, 
-    status: 'Approved', 
+    status: 'Disetujui', 
     bavMatch: true,
     documents: { sep: true, resume: true, billing: true, coding: true }
   },
   { 
     id: 'CLM-2023-002', 
     patientName: 'Siti Aminah', 
-    type: 'Inpatient',
+    type: 'Rawat Inap',
     date: '2023-10-02', 
     amountSubmitted: 2000000, 
     amountApproved: 1800000, 
-    status: 'Disputed', 
+    status: 'Sengketa', 
     bavMatch: false,
     documents: { sep: true, resume: true, billing: true, coding: false }
   },
   { 
     id: 'CLM-2023-003', 
     patientName: 'Agus Setiawan', 
-    type: 'Outpatient',
+    type: 'Rawat Jalan',
     date: '2023-10-03', 
     amountSubmitted: 750000, 
     amountApproved: 750000, 
-    status: 'Approved', 
+    status: 'Disetujui', 
     bavMatch: true,
     documents: { sep: true, resume: true, billing: true, coding: true }
   },
   { 
     id: 'CLM-2023-004', 
     patientName: 'Dewi Lestari', 
-    type: 'Inpatient',
+    type: 'Rawat Inap',
     date: '2023-10-04', 
     amountSubmitted: 3000000, 
     amountApproved: 0, 
-    status: 'Pending', 
+    status: 'Menunggu', 
     bavMatch: false,
     documents: { sep: false, resume: true, billing: true, coding: false }
   },
   { 
     id: 'CLM-2023-005', 
     patientName: 'Rina Wati', 
-    type: 'Outpatient',
+    type: 'Rawat Jalan',
     date: '2023-10-05', 
     amountSubmitted: 1200000, 
     amountApproved: 1200000, 
-    status: 'Approved', 
+    status: 'Disetujui', 
     bavMatch: true,
     documents: { sep: true, resume: true, billing: true, coding: true }
   },
@@ -78,7 +78,7 @@ export const Reconciliation: React.FC = () => {
     // Simulate processing delay
     setTimeout(() => {
       setIsProcessing(false);
-      alert("BAV File Processed Successfully! Discrepancies highlighted.");
+      alert("File BAV Berhasil Diproses! Selisih data telah ditandai.");
     }, 2000);
   };
 
@@ -109,7 +109,7 @@ export const Reconciliation: React.FC = () => {
               : 'text-slate-500 hover:text-slate-700'
           }`}
         >
-          BAV Reconciliation
+          Rekonsiliasi BAV (BPJS)
         </button>
         <button
           onClick={() => setActiveTab('checklist')}
@@ -119,7 +119,7 @@ export const Reconciliation: React.FC = () => {
               : 'text-slate-500 hover:text-slate-700'
           }`}
         >
-          Document Checklist (Prosedur C)
+          Checklist Dokumen (Prosedur C)
         </button>
       </div>
 
@@ -128,7 +128,7 @@ export const Reconciliation: React.FC = () => {
           <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
             <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <Upload size={24} className="text-blue-600"/>
-                Import BAV Data (BPJS)
+                Impor Data BAV (BPJS)
             </h2>
             <div className="p-8 border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 flex flex-col items-center justify-center text-center">
                 <input 
@@ -149,8 +149,8 @@ export const Reconciliation: React.FC = () => {
                         <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
                             <Upload size={24} />
                         </div>
-                        <p className="text-slate-700 font-medium">Click to upload BAV File</p>
-                        <p className="text-slate-400 text-sm mt-1">Supports Excel (.xlsx) or CSV</p>
+                        <p className="text-slate-700 font-medium">Klik untuk unggah File BAV</p>
+                        <p className="text-slate-400 text-sm mt-1">Mendukung Excel (.xlsx) atau CSV</p>
                     </label>
                 )}
                 
@@ -161,20 +161,20 @@ export const Reconciliation: React.FC = () => {
                         !file || isProcessing ? 'bg-slate-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
                     }`}
                 >
-                    {isProcessing ? 'Processing Reconciliation...' : 'Run Reconciliation'}
+                    {isProcessing ? 'Memproses Rekonsiliasi...' : 'Jalankan Rekonsiliasi'}
                 </button>
             </div>
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
               <div className="p-4 border-b border-slate-100 flex justify-between items-center">
-                  <h3 className="font-bold text-slate-800">Reconciliation Results</h3>
+                  <h3 className="font-bold text-slate-800">Hasil Rekonsiliasi</h3>
                   <div className="flex gap-2">
                       <button className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50">
                           <Search size={16} /> Filter
                       </button>
                       <button className="flex items-center gap-2 px-3 py-1.5 text-sm text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-50">
-                          <Download size={16} /> Export Report
+                          <Download size={16} /> Ekspor Laporan
                       </button>
                   </div>
               </div>
@@ -182,12 +182,12 @@ export const Reconciliation: React.FC = () => {
                   <table className="w-full text-left text-sm">
                       <thead className="bg-slate-50 text-slate-500">
                           <tr>
-                              <th className="px-6 py-3 font-medium">Claim ID</th>
-                              <th className="px-6 py-3 font-medium">Patient</th>
-                              <th className="px-6 py-3 font-medium">Submitted</th>
-                              <th className="px-6 py-3 font-medium">Approved (BAV)</th>
+                              <th className="px-6 py-3 font-medium">ID Klaim</th>
+                              <th className="px-6 py-3 font-medium">Pasien</th>
+                              <th className="px-6 py-3 font-medium">Diajukan</th>
+                              <th className="px-6 py-3 font-medium">Disetujui (BAV)</th>
                               <th className="px-6 py-3 font-medium">Status</th>
-                              <th className="px-6 py-3 font-medium">Match</th>
+                              <th className="px-6 py-3 font-medium">Cocok</th>
                           </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100">
@@ -202,8 +202,8 @@ export const Reconciliation: React.FC = () => {
                                   <td className="px-6 py-4 text-slate-600">Rp {row.amountApproved.toLocaleString('id-ID')}</td>
                                   <td className="px-6 py-4">
                                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                          row.status === 'Approved' ? 'bg-green-100 text-green-700' : 
-                                          row.status === 'Disputed' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
+                                          row.status === 'Disetujui' ? 'bg-green-100 text-green-700' : 
+                                          row.status === 'Sengketa' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
                                       }`}>
                                           {row.status}
                                       </span>
@@ -225,7 +225,7 @@ export const Reconciliation: React.FC = () => {
       ) : (
         <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
            <div className="p-6 border-b border-slate-100">
-             <h2 className="text-xl font-bold text-slate-800">Claim Document Completeness</h2>
+             <h2 className="text-xl font-bold text-slate-800">Kelengkapan Dokumen Klaim</h2>
              <p className="text-sm text-slate-500 mt-1">
                Prosedur yang Diusulkan: Checklist kelengkapan berkas klaim (Rawat Jalan & Rawat Inap).
              </p>
@@ -235,12 +235,12 @@ export const Reconciliation: React.FC = () => {
              <table className="w-full text-left text-sm">
                 <thead className="bg-slate-50 text-slate-500">
                    <tr>
-                      <th className="px-6 py-3 font-medium">Claim Details</th>
+                      <th className="px-6 py-3 font-medium">Detail Klaim</th>
                       <th className="px-6 py-3 font-medium text-center">SEP</th>
-                      <th className="px-6 py-3 font-medium text-center">Med Resume</th>
-                      <th className="px-6 py-3 font-medium text-center">Billing</th>
+                      <th className="px-6 py-3 font-medium text-center">Resume Medis</th>
+                      <th className="px-6 py-3 font-medium text-center">Rincian Biaya</th>
                       <th className="px-6 py-3 font-medium text-center">Coding</th>
-                      <th className="px-6 py-3 font-medium text-center">Complete</th>
+                      <th className="px-6 py-3 font-medium text-center">Lengkap</th>
                    </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -267,11 +267,11 @@ export const Reconciliation: React.FC = () => {
                          <td className="px-6 py-4 text-center">
                             {isComplete ? (
                               <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
-                                <CheckCircle size={12} /> READY
+                                <CheckCircle size={12} /> LENGKAP
                               </span>
                             ) : (
                               <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700">
-                                <AlertTriangle size={12} /> INCOMPLETE
+                                <AlertTriangle size={12} /> BELUM
                               </span>
                             )}
                          </td>

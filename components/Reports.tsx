@@ -3,27 +3,27 @@ import { FileText, Download, Calendar } from 'lucide-react';
 
 export const Reports: React.FC = () => {
   const reports = [
-    { id: 1, title: 'Laporan Klaim Rawat Jalan', type: 'Outpatient', date: 'Oct 2023', status: 'Ready' },
-    { id: 2, title: 'Laporan Klaim Rawat Inap', type: 'Inpatient', date: 'Oct 2023', status: 'Processing' },
-    { id: 3, title: 'Laporan Pendapatan (Revenue)', type: 'Financial', date: 'Q3 2023', status: 'Ready' },
-    { id: 4, title: 'Analysis Cost Recovery Rate (CRR)', type: 'Analysis', date: 'YTD 2023', status: 'Ready' },
+    { id: 1, title: 'Laporan Klaim Rawat Jalan', type: 'Rawat Jalan', date: 'Okt 2023', status: 'Ready' },
+    { id: 2, title: 'Laporan Klaim Rawat Inap', type: 'Rawat Inap', date: 'Okt 2023', status: 'Processing' },
+    { id: 3, title: 'Laporan Pendapatan (Revenue)', type: 'Keuangan', date: 'Q3 2023', status: 'Ready' },
+    { id: 4, title: 'Analisis Cost Recovery Rate (CRR)', type: 'Analisis', date: 'YTD 2023', status: 'Ready' },
   ];
 
   return (
     <div className="space-y-6">
       <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-        <h2 className="text-xl font-bold text-slate-800 mb-4">Report Generation</h2>
+        <h2 className="text-xl font-bold text-slate-800 mb-4">Pembuatan Laporan</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Report Type</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Jenis Laporan</label>
                 <select className="w-full rounded-lg border-slate-300 border p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <option>Outpatient Claim Report</option>
-                    <option>Inpatient Claim Report</option>
-                    <option>Financial Revenue</option>
+                    <option>Laporan Klaim Rawat Jalan</option>
+                    <option>Laporan Klaim Rawat Inap</option>
+                    <option>Pendapatan Keuangan</option>
                 </select>
             </div>
             <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Period</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Periode</label>
                 <div className="relative">
                     <input type="month" className="w-full rounded-lg border-slate-300 border p-2 text-sm focus:ring-2 focus:ring-blue-500" />
                     <Calendar className="absolute right-3 top-2.5 w-4 h-4 text-slate-400 pointer-events-none" />
@@ -31,7 +31,7 @@ export const Reports: React.FC = () => {
             </div>
             <div className="flex items-end">
                 <button className="w-full bg-blue-600 text-white p-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                    Generate Report
+                    Buat Laporan
                 </button>
             </div>
         </div>

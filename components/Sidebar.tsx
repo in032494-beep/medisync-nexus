@@ -16,11 +16,11 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView }) => {
   const navItems = [
-    { view: ViewState.HOME, label: 'Overview', icon: <Activity size={20} /> },
-    { view: ViewState.AI_AGENT, label: 'Patient AI Portal', icon: <MessageSquareText size={20} /> },
-    { view: ViewState.DASHBOARD, label: 'Finance Dashboard', icon: <LayoutDashboard size={20} /> },
-    { view: ViewState.RECONCILIATION, label: 'Claim Reconciliation', icon: <FileCheck size={20} /> },
-    { view: ViewState.REPORTS, label: 'Reports', icon: <PieChart size={20} /> },
+    { view: ViewState.HOME, label: 'Beranda', icon: <Activity size={20} /> },
+    { view: ViewState.AI_AGENT, label: 'Agen Pasien AI', icon: <MessageSquareText size={20} /> },
+    { view: ViewState.DASHBOARD, label: 'Dashboard Keuangan', icon: <LayoutDashboard size={20} /> },
+    { view: ViewState.RECONCILIATION, label: 'Rekonsiliasi Klaim', icon: <FileCheck size={20} /> },
+    { view: ViewState.REPORTS, label: 'Laporan', icon: <PieChart size={20} /> },
   ];
 
   return (
@@ -32,7 +32,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView }) =
           </div>
           MediSync Nexus
         </h1>
-        <p className="text-xs text-slate-400 mt-1">RSUP Fatmawati System</p>
+        <p className="text-xs text-slate-400 mt-1">Sistem RSUP Fatmawati</p>
       </div>
 
       <nav className="flex-1 p-4 space-y-2">
@@ -55,7 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView }) =
       <div className="p-4 border-t border-slate-700">
         <button className="flex items-center gap-3 px-4 py-2 text-red-400 hover:bg-slate-800 w-full rounded-lg transition-colors">
           <LogOut size={18} />
-          <span className="text-sm font-medium">Sign Out</span>
+          <span className="text-sm font-medium">Keluar</span>
         </button>
       </div>
     </div>

@@ -36,45 +36,45 @@ function App() {
         return (
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white shadow-lg">
-                <h1 className="text-3xl font-bold mb-2">Welcome to MediSync Nexus</h1>
+                <h1 className="text-3xl font-bold mb-2">Selamat Datang di MediSync Nexus</h1>
                 <p className="text-blue-100 max-w-2xl">
-                    Integrated Hospital Management System for RSUP Fatmawati. 
-                    Manage patient inquiries via AI Agents and handle JKN Financial Reconciliation in one unified platform.
+                    Sistem Manajemen Rumah Sakit Terintegrasi untuk RSUP Fatmawati.
+                    Kelola pertanyaan pasien melalui Agen AI dan tangani Rekonsiliasi Keuangan JKN dalam satu platform terpadu.
                 </p>
                 <div className="mt-6 flex gap-4">
                     <button 
                         onClick={() => setCurrentView(ViewState.AI_AGENT)}
                         className="bg-white text-blue-700 px-6 py-2.5 rounded-lg font-bold hover:bg-blue-50 transition-colors"
                     >
-                        Open AI Patient Coordinator
+                        Buka Agen Pasien AI
                     </button>
                     <button 
                         onClick={() => setCurrentView(ViewState.DASHBOARD)}
                         className="bg-blue-500 bg-opacity-30 border border-white border-opacity-30 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-opacity-40 transition-colors"
                     >
-                        Go to Finance Dashboard
+                        Ke Dashboard Keuangan
                     </button>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <h3 className="text-lg font-bold text-slate-800 mb-2">System Status</h3>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">Status Sistem</h3>
                     <div className="space-y-3">
                         <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-                            <span className="text-sm font-medium text-slate-600">AI Routing Core</span>
+                            <span className="text-sm font-medium text-slate-600">Inti Routing AI</span>
                             <span className="flex items-center gap-2 text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-full">
                                 <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span> ONLINE
                             </span>
                         </div>
                         <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-                            <span className="text-sm font-medium text-slate-600">SIA Server (Internal)</span>
+                            <span className="text-sm font-medium text-slate-600">Server SIA (Internal)</span>
                             <span className="flex items-center gap-2 text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-full">
-                                <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span> CONNECTED
+                                <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span> TERHUBUNG
                             </span>
                         </div>
                         <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-                            <span className="text-sm font-medium text-slate-600">BPJS Verification API</span>
+                            <span className="text-sm font-medium text-slate-600">API Verifikasi BPJS</span>
                             <span className="flex items-center gap-2 text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-full">
                                 <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span> ONLINE
                             </span>
@@ -83,15 +83,15 @@ function App() {
                 </div>
 
                 <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                     <h3 className="text-lg font-bold text-slate-800 mb-2">Quick Actions</h3>
+                     <h3 className="text-lg font-bold text-slate-800 mb-2">Aksi Cepat</h3>
                      <div className="grid grid-cols-2 gap-4">
                         <button onClick={() => setCurrentView(ViewState.RECONCILIATION)} className="p-4 border border-slate-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group">
-                            <span className="block font-bold text-slate-700 group-hover:text-blue-700">Import BAV</span>
-                            <span className="text-xs text-slate-500">Upload BPJS Excel</span>
+                            <span className="block font-bold text-slate-700 group-hover:text-blue-700">Impor BAV</span>
+                            <span className="text-xs text-slate-500">Unggah Excel BPJS</span>
                         </button>
                         <button onClick={() => setCurrentView(ViewState.REPORTS)} className="p-4 border border-slate-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group">
-                            <span className="block font-bold text-slate-700 group-hover:text-blue-700">Daily Revenue</span>
-                            <span className="text-xs text-slate-500">View today's income</span>
+                            <span className="block font-bold text-slate-700 group-hover:text-blue-700">Pendapatan Harian</span>
+                            <span className="text-xs text-slate-500">Lihat pemasukan hari ini</span>
                         </button>
                      </div>
                 </div>
@@ -111,7 +111,7 @@ function App() {
                       </div>
                   </div>
                   <h2 className="text-2xl font-bold text-center text-slate-800 mb-1">MediSync Nexus</h2>
-                  <p className="text-center text-slate-500 text-sm mb-8">RSUP Fatmawati Integrated System</p>
+                  <p className="text-center text-slate-500 text-sm mb-8">Sistem Terintegrasi RSUP Fatmawati</p>
                   
                   <form onSubmit={handleLogin} className="space-y-4">
                       <div>
@@ -121,7 +121,7 @@ function App() {
                               <input 
                                 type="text" 
                                 className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                                placeholder="Enter username"
+                                placeholder="Masukkan username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                               />
@@ -134,18 +134,18 @@ function App() {
                               <input 
                                 type="password" 
                                 className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                                placeholder="Enter password"
+                                placeholder="Masukkan password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                               />
                           </div>
                       </div>
                       <button type="submit" className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
-                          Secure Login
+                          Login Aman
                       </button>
                   </form>
                   <p className="text-center text-xs text-slate-400 mt-6">
-                      Authorized Personnel Only • Secure Connection
+                      Hanya Personel Berwenang • Koneksi Aman
                   </p>
               </div>
           </div>
@@ -160,12 +160,12 @@ function App() {
         <header className="mb-8 flex justify-between items-center">
             <div>
                  <h2 className="text-2xl font-bold text-slate-800">
-                    {currentView === ViewState.HOME ? 'Dashboard Overview' : 
-                     currentView === ViewState.AI_AGENT ? 'AI Patient Coordinator' :
-                     currentView === ViewState.DASHBOARD ? 'Financial Overview' :
-                     currentView === ViewState.RECONCILIATION ? 'Claim Reconciliation' : 'Reports'}
+                    {currentView === ViewState.HOME ? 'Ringkasan Dashboard' : 
+                     currentView === ViewState.AI_AGENT ? 'Koordinator Pasien AI' :
+                     currentView === ViewState.DASHBOARD ? 'Tinjauan Keuangan' :
+                     currentView === ViewState.RECONCILIATION ? 'Rekonsiliasi Klaim' : 'Laporan'}
                  </h2>
-                 <p className="text-slate-500 text-sm">RSUP Fatmawati • {new Date().toLocaleDateString()}</p>
+                 <p className="text-slate-500 text-sm">RSUP Fatmawati • {new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
             </div>
             <div className="flex items-center gap-3">
                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold border-2 border-white shadow-sm">
@@ -173,7 +173,7 @@ function App() {
                  </div>
                  <div className="text-right hidden sm:block">
                      <p className="text-sm font-bold text-slate-700">{username || 'Admin'}</p>
-                     <p className="text-xs text-slate-500">Finance Dept</p>
+                     <p className="text-xs text-slate-500">Dept Keuangan</p>
                  </div>
             </div>
         </header>

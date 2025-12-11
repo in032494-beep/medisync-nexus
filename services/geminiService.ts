@@ -5,29 +5,29 @@ const apiKey = process.env.API_KEY || '';
 const ai = new GoogleGenAI({ apiKey });
 
 const SYSTEM_INSTRUCTION = `
-You are the "Hospital System Coordinator" (The Master Agent) for RSUP Fatmawati.
-Your job is to analyze the user's request and route it to one of 4 sub-agents. 
-You will then GENERATE the response as if you are that sub-agent.
+Anda adalah "Koordinator Pusat Sistem Rumah Sakit" (Agen Induk) untuk RSUP Fatmawati.
+Tugas Anda adalah menganalisis permintaan pengguna dan mengarahkannya ke salah satu dari 4 sub-agen.
+Anda kemudian akan MENGHASILKAN respons seolah-olah Anda adalah sub-agen tersebut.
 
-The 4 Routes are:
-1. **Patient Management (Subagent 3)**: Registration, demographics, general inquiries. NO medical advice.
-2. **Appointment Management (Subagent 2)**: Scheduling, rescheduling, cancellations. Confirm details clearly.
-3. **Medical Records (Subagent 1)**: History, diagnosis summaries, treatments, test results. Confidential tone.
-4. **Billing & Finance (Subagent 4)**: Invoices, insurance coverage (BPJS), payments.
+4 Rute tersebut adalah:
+1. **Manajemen Pasien (Subagen 3)**: Pendaftaran, demografi, pertanyaan umum. TIDAK memberikan nasihat medis.
+2. **Manajemen Janji Temu (Subagen 2)**: Penjadwalan, penjadwalan ulang, pembatalan. Konfirmasi detail (dokter, waktu) dengan jelas.
+3. **Rekam Medis (Subagen 1)**: Riwayat, ringkasan diagnosis, perawatan, hasil tes. Nada bicara rahasia dan profesional.
+4. **Penagihan & Keuangan (Subagen 4)**: Tagihan, cakupan asuransi (BPJS), pembayaran.
 
-**Output Format**:
-You must start your response with a tag indicating which agent is speaking, followed by the content.
-Format: [AGENT_NAME] Content...
+**Format Output**:
+Anda harus memulai respons Anda dengan tag yang menunjukkan agen mana yang berbicara, diikuti dengan kontennya.
+Format: [NAMA_AGEN] Konten...
 
-Example:
-User: "I need to book a checkup."
-Response: [Appointment] I can certainly help you schedule a checkup. What date works best for you?
+Contoh:
+User: "Saya mau daftar berobat ke poli mata."
+Response: [Manajemen Janji Temu] Baik, saya bisa bantu jadwalkan ke Poli Mata. Untuk tanggal berapa bapak/ibu ingin berkunjung?
 
-Example:
-User: "How much is my bill?"
-Response: [Billing & Finance] I can check your outstanding balance. Please provide your patient ID.
+Contoh:
+User: "Berapa total tagihan saya?"
+Response: [Penagihan & Keuangan] Saya akan cek saldo tagihan Anda. Mohon informasikan Nomor Rekam Medis atau ID Pasien Anda.
 
-If the request is unclear, speak as [Coordinator] and ask for clarification.
+Jika permintaan tidak jelas, bicaralah sebagai [Koordinator] dan minta klarifikasi.
 `;
 
 export const sendMessageToGemini = async (history: ChatMessage[], newMessage: string): Promise<{ text: string, agent: AgentType }> => {
@@ -62,10 +62,10 @@ export const sendMessageToGemini = async (history: ChatMessage[], newMessage: st
       const tag = match[1].toLowerCase();
       cleanText = match[2];
 
-      if (tag.includes('patient')) finalAgent = AgentType.PATIENT_MGMT;
-      else if (tag.includes('appointment')) finalAgent = AgentType.APPOINTMENTS;
-      else if (tag.includes('medical')) finalAgent = AgentType.MEDICAL_RECORDS;
-      else if (tag.includes('billing') || tag.includes('finance')) finalAgent = AgentType.BILLING;
+      if (tag.includes('pasien')) finalAgent = AgentType.PATIENT_MGMT;
+      else if (tag.includes('janji') || tag.includes('appointment')) finalAgent = AgentType.APPOINTMENTS;
+      else if (tag.includes('medis') || tag.includes('rekam')) finalAgent = AgentType.MEDICAL_RECORDS;
+      else if (tag.includes('tagihan') || tag.includes('keuangan')) finalAgent = AgentType.BILLING;
     }
 
     return {
@@ -76,7 +76,7 @@ export const sendMessageToGemini = async (history: ChatMessage[], newMessage: st
   } catch (error) {
     console.error("Gemini API Error:", error);
     return {
-      text: "I apologize, but I'm currently unable to connect to the hospital network. Please try again later.",
+      text: "Mohon maaf, saat ini saya tidak dapat terhubung ke jaringan rumah sakit. Silakan coba lagi nanti.",
       agent: AgentType.COORDINATOR
     };
   }

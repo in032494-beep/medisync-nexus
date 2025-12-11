@@ -15,7 +15,7 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, change, icon, color }
         <span className={`text-xs font-medium px-2 py-0.5 rounded-full mt-2 inline-block ${
             change.startsWith('+') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
         }`}>
-          {change} from last month
+          {change} dari bulan lalu
         </span>
       )}
     </div>
@@ -36,31 +36,31 @@ export const FinanceDashboard: React.FC = () => {
   ];
 
   const pieData = [
-    { name: 'Paid', value: 75, color: '#10B981' },
-    { name: 'Pending', value: 15, color: '#F59E0B' },
-    { name: 'Disputed', value: 10, color: '#EF4444' },
+    { name: 'Dibayar', value: 75, color: '#10B981' },
+    { name: 'Menunggu', value: 15, color: '#F59E0B' },
+    { name: 'Sengketa', value: 10, color: '#EF4444' },
   ];
 
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
-          title="Total Claims Submitted" 
-          value="Rp 2.4B" 
+          title="Total Klaim Diajukan" 
+          value="Rp 2.4M" 
           change="+12%" 
           icon={<FileCheck />} 
           color="bg-blue-500"
         />
         <StatCard 
-          title="Total Approved (BAV)" 
-          value="Rp 1.9B" 
+          title="Total Disetujui (BAV)" 
+          value="Rp 1.9M" 
           change="+8%" 
           icon={<TrendingUp />} 
           color="bg-green-500"
         />
         <StatCard 
-          title="Claim Discrepancy" 
-          value="Rp 500M" 
+          title="Selisih Klaim" 
+          value="Rp 500Jt" 
           change="-2%" 
           icon={<AlertCircle />} 
           color="bg-red-500"
@@ -76,7 +76,7 @@ export const FinanceDashboard: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">Claim Submission vs Approval Trend</h3>
+          <h3 className="text-lg font-bold text-slate-800 mb-6">Tren Pengajuan vs Persetujuan Klaim</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={barData}>
@@ -88,15 +88,15 @@ export const FinanceDashboard: React.FC = () => {
                     cursor={{fill: '#f1f5f9'}}
                 />
                 <Legend iconType="circle" wrapperStyle={{paddingTop: '20px'}} />
-                <Bar dataKey="submitted" name="Submitted" fill="#3B82F6" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="approved" name="Approved (BAV)" fill="#10B981" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="submitted" name="Diajukan" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="approved" name="Disetujui (BAV)" fill="#10B981" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">Claim Status Distribution</h3>
+          <h3 className="text-lg font-bold text-slate-800 mb-6">Distribusi Status Klaim</h3>
           <div className="h-64 flex justify-center items-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -119,14 +119,14 @@ export const FinanceDashboard: React.FC = () => {
             </ResponsiveContainer>
           </div>
           <div className="mt-4 text-center">
-            <p className="text-sm text-slate-500">Based on current period (October 2023)</p>
+            <p className="text-sm text-slate-500">Berdasarkan periode saat ini (Oktober 2023)</p>
           </div>
         </div>
       </div>
       
       {/* Workflow Diagram Section */}
       <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-        <h3 className="text-lg font-bold text-slate-800 mb-4">SIA Deployment Architecture</h3>
+        <h3 className="text-lg font-bold text-slate-800 mb-4">Arsitektur Penerapan SIA</h3>
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-slate-50 rounded-lg border border-slate-200">
            
            <div className="flex flex-col items-center p-4 bg-white shadow-sm rounded-lg border border-slate-200 w-32">

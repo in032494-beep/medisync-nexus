@@ -9,11 +9,11 @@ export enum ViewState {
 }
 
 export enum AgentType {
-  COORDINATOR = 'Coordinator',
-  PATIENT_MGMT = 'Patient Management',
-  APPOINTMENTS = 'Appointment',
-  MEDICAL_RECORDS = 'Medical Records',
-  BILLING = 'Billing & Finance'
+  COORDINATOR = 'Koordinator',
+  PATIENT_MGMT = 'Manajemen Pasien',
+  APPOINTMENTS = 'Manajemen Janji Temu',
+  MEDICAL_RECORDS = 'Rekam Medis',
+  BILLING = 'Penagihan & Keuangan'
 }
 
 export interface ChatMessage {
@@ -27,11 +27,11 @@ export interface ChatMessage {
 export interface ClaimData {
   id: string;
   patientName: string;
-  type: 'Outpatient' | 'Inpatient';
+  type: 'Rawat Jalan' | 'Rawat Inap';
   date: string;
   amountSubmitted: number;
   amountApproved: number;
-  status: 'Pending' | 'Approved' | 'Disputed';
+  status: 'Menunggu' | 'Disetujui' | 'Sengketa';
   bavMatch: boolean;
   // Checklist for completeness (Section C)
   documents: {
