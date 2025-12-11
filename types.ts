@@ -27,11 +27,19 @@ export interface ChatMessage {
 export interface ClaimData {
   id: string;
   patientName: string;
+  type: 'Outpatient' | 'Inpatient';
   date: string;
   amountSubmitted: number;
   amountApproved: number;
   status: 'Pending' | 'Approved' | 'Disputed';
   bavMatch: boolean;
+  // Checklist for completeness (Section C)
+  documents: {
+    sep: boolean;      // Surat Eligibilitas Peserta
+    resume: boolean;   // Resume Medis
+    billing: boolean;  // Rincian Biaya
+    coding: boolean;   // Coding Diagnosis
+  }
 }
 
 export interface StatCardProps {

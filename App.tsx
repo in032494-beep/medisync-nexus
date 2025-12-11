@@ -5,9 +5,21 @@ import { FinanceDashboard } from './components/FinanceDashboard';
 import { Reconciliation } from './components/Reconciliation';
 import { Reports } from './components/Reports';
 import { ViewState } from './types';
+import { Lock, User } from 'lucide-react';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentView, setCurrentView] = useState<ViewState>(ViewState.HOME);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate simple login
+    if (username && password) {
+        setIsLoggedIn(true);
+    }
+  };
 
   const renderContent = () => {
     switch (currentView) {
@@ -89,6 +101,57 @@ function App() {
     }
   };
 
+  if (!isLoggedIn) {
+      return (
+          <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+              <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-200">
+                  <div className="flex justify-center mb-6">
+                      <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                          <span className="text-white font-bold text-3xl">M</span>
+                      </div>
+                  </div>
+                  <h2 className="text-2xl font-bold text-center text-slate-800 mb-1">MediSync Nexus</h2>
+                  <p className="text-center text-slate-500 text-sm mb-8">RSUP Fatmawati Integrated System</p>
+                  
+                  <form onSubmit={handleLogin} className="space-y-4">
+                      <div>
+                          <label className="block text-sm font-medium text-slate-700 mb-1">Username</label>
+                          <div className="relative">
+                              <User className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
+                              <input 
+                                type="text" 
+                                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                placeholder="Enter username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                              />
+                          </div>
+                      </div>
+                      <div>
+                          <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                          <div className="relative">
+                              <Lock className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
+                              <input 
+                                type="password" 
+                                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                placeholder="Enter password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                              />
+                          </div>
+                      </div>
+                      <button type="submit" className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                          Secure Login
+                      </button>
+                  </form>
+                  <p className="text-center text-xs text-slate-400 mt-6">
+                      Authorized Personnel Only • Secure Connection
+                  </p>
+              </div>
+          </div>
+      );
+  }
+
   return (
     <div className="flex bg-slate-50 min-h-screen">
       <Sidebar currentView={currentView} onChangeView={setCurrentView} />
@@ -106,10 +169,10 @@ function App() {
             </div>
             <div className="flex items-center gap-3">
                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold border-2 border-white shadow-sm">
-                    A
+                    {username.charAt(0).toUpperCase()}
                  </div>
                  <div className="text-right hidden sm:block">
-                     <p className="text-sm font-bold text-slate-700">Admin Finance</p>
+                     <p className="text-sm font-bold text-slate-700">{username || 'Admin'}</p>
                      <p className="text-xs text-slate-500">Finance Dept</p>
                  </div>
             </div>
